@@ -4,4 +4,10 @@ packages:
   - "apps/*/front-end"
   - "apps/*/back-end"
 
-  - "packages/vendor/fuyeor/packages/*"
+  - "packages/commons"
+  - "packages/locale"
+
+  - "packages/vendor/fuyeor/packages/commons"
+  - "packages/vendor/fuyeor/packages/interactify"
+  - "packages/vendor/fuyeor/packages/tsconfig"
+  - "packages/vendor/fuyeor/packages/config"

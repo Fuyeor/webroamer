@@ -1,0 +1,38 @@
+{
+  "system.start": {
+    "ar": "ابدأ",
+    "de": "Starten",
+    "en": "Start",
+    "es": "Iniciar",
+    "fr": "Démarrer",
+    "ja": "開始",
+    "ko": "시작",
+    "pt": "Iniciar",
+    "ru": "Пуск",
+    "zh-hans": "开始"
+  },
+  "system.wallpaper.lock": {
+    "ar": "خلفية شاشة القفل",
+    "de": "Sperrbildschirm-Hintergrund",
+    "en": "Lock Screen Wallpaper",
+    "es": "Fondo de pantalla de bloqueo",
+    "fr": "Fond d'écran de verrouillage",
+    "ja": "ロック画面の壁紙",
+    "ko": "잠금 화면 배경화면",
+    "pt": "Papel de parede da tela de bloqueio",
+    "ru": "Обои экрана блокировки",
+    "zh-hans": "锁屏壁纸"
+  },
+  "system.wallpaper.screen": {
+    "ar": "خلفية الشاشة",
+    "de": "Bildschirmhintergrund",
+    "en": "Screen Wallpaper",
+    "es": "Fondo de pantalla",
+    "fr": "Fond d'écran",
+    "ja": "スクリーン壁紙",
+    "ko": "화면 배경화면",
+    "pt": "Papel de parede da tela",
+    "ru": "Обои экрана",
+    "zh-hans": "屏幕壁纸"
+  }
+}

@@ -1,9 +1,8 @@
 {
   "recommendations": [
-    "dbaeumer.vscode-eslint",
+    "runem.lit-plugin",
     "esbenp.prettier-vscode",
-    "vue.volar",
     "rust-lang.rust-analyzer",
-    "charliermarsh.ruff"
+    "charliermarsh.ruff",
   ]
 }

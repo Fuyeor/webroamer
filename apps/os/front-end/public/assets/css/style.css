@@ -1,0 +1,17 @@
+:root {
+  --width-body: 100%;
+
+  --fuyeor-purple: #a4a4e4;
+  --fuyeor-purple-light: rgba(164, 164, 228, 0.2);
+  --status-bar-height: 30px;
+  --task-bar-height: 50px;
+  --glass-blur: blur(20px);
+}
+
+body {
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+}
