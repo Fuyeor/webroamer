@@ -20,12 +20,12 @@ export class OsPropertyItem extends LitElement {
       border-bottom: none;
     }
     .label {
-      color: #888;
-      font-size: 13px;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
     }
     .value {
-      font-size: 13px;
-      color: #eee;
+      color: var(--text-primary);
+      font-size: 0.9rem;
       font-weight: 500;
     }
   `;

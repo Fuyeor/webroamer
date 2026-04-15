@@ -21,10 +21,10 @@ export class SystemTaskBar extends SignalWatcher(LitElement) {
       gap: 6px;
       height: var(--task-bar-height, 48px);
       padding: 0 16px;
-      background: var(--fuyeor-purple-light,);
-      backdrop-filter: var(--glass-blur,);
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      box-sizing: border-box;
+
+      backdrop-filter: saturate(180%) blur(20px);
+      background: var(--surface-raised-transparent);
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
     }
 
     .start-button {
@@ -55,7 +55,6 @@ export class SystemTaskBar extends SignalWatcher(LitElement) {
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      color: white;
       font-size: 0.8rem;
       font-weight: bold;
       background: rgba(255, 255, 255, 0.05);
@@ -68,7 +67,17 @@ export class SystemTaskBar extends SignalWatcher(LitElement) {
     }
     .app-icon[active] {
       background: rgba(255, 255, 255, 0.15);
-      border-bottom: 3px solid var(--fuyeor-purple);
+    }
+
+    .app-icon[active]:after {
+      content: '';
+      background: var(--color-brand);
+      z-index: 1;
+      border-radius: 2px;
+      width: 60px;
+      height: 4px;
+      position: absolute;
+      bottom: 0;
     }
   `;
 

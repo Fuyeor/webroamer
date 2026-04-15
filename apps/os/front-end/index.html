@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
   <script>
@@ -75,31 +75,26 @@
       justify-content: center;
       align-items: center;
 
+      .app-logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        position: absolute;
+        height: 300px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        & img {
+          width: 100px
+        }
+      }
+
       .spinner {
         border: 7px solid var(--surface-raised-hover);
         border-left-color: var(--color-brand);
         width: 60px;
         height: 60px;
-      }
-
-      .app-logo-container {
-        position: absolute;
-        width: 300px;
-        height: 300px;
-        top: 36%;
-        left: 50%;
-      }
-
-      .app-logo-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transform: translate(-50%, -50%);
-        z-index: 99;
-      }
-
-      .app-logo-container img {
-        width: 100px
       }
     }
 
@@ -140,9 +135,7 @@
   <noscript>
     <img class="no-script-logo" src="https://deliver.fuyeor.net/@fu/trademark/tm/official.png">
     <h2>JavaScript is not available</h2>
-    <strong>This website runs on JavaScript and we've detected that JavaScript is disabled in this browser. Please
-      enable JavaScript or switch to a supported browser to continue using this website.</strong>
-    <img class="no-script-desc" src="https://deliver.fuyeor.net/@fu/commons/images/no-script.png">
+    <strong>The system UI cannot load due to a missing JavaScript environment.</strong>
 
     <style>
       body,
@@ -155,26 +148,20 @@
 
       noscript {
         max-width: 660px;
-        padding: 20px
+        padding: 20px;
+
+        .no-script-logo {
+          max-width: 100px;
+          margin-bottom: 10px
+        }
+
+        h2,
+        strong {
+          color: #586577
+        }
       }
 
-      noscript .no-script-logo {
-        max-width: 100px;
-        margin-bottom: 10px
-      }
-
-      noscript h2,
-      noscript strong {
-        color: #586577
-      }
-
-      noscript .no-script-desc {
-        border: 1px solid #e0e3e9;
-        border-radius: 10px;
-        margin-top: 20px
-      }
-
-      /* 当 JS 不可用时，隐藏加载动画 */
+      /* hide splash screen when JS is unavailable */
       .splash-screen {
         display: none !important;
       }

@@ -20,9 +20,10 @@ export class SystemStartMenu extends SignalWatcher(LitElement) {
       width: 300px;
       min-height: 400px;
       background: rgba(20, 20, 30, 0.85);
+      background: var(--surface-raised-transparent);
       backdrop-filter: blur(30px);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
+      border-radius: var(--radius-md);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       transform: translateY(20px);
       opacity: 0;
@@ -44,7 +45,7 @@ export class SystemStartMenu extends SignalWatcher(LitElement) {
 
     .menu-item {
       padding: 12px 20px;
-      color: #eee;
+      color: var(--text-secondary);
       cursor: pointer;
       display: flex;
       align-items: center;

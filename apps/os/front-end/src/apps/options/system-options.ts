@@ -1,10 +1,11 @@
 // @/apps/options/system-options.ts
-import { LitElement, html, css } from 'lit';
+import { LitElement, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { SignalWatcher } from '@lit-labs/signals';
 import { desktopBackground } from '@/shared/signals/settings';
 import { ToastAPI } from '@/shared/signals/toast';
 import { isImageUrl } from '@/shared/utils/is-image';
+import { styles } from './system-options.styles';
 import '@fuyeor/locale';
 
 import './components/appearance-selector';
@@ -12,125 +13,13 @@ import './components/font-size-selector';
 
 @customElement('system-options')
 export class SystemOptions extends SignalWatcher(LitElement) {
-  static styles = css`
-    :host {
-      display: block;
-      width: 100%;
-      height: 100%;
-      color: white;
-      padding: 24px;
-      box-sizing: border-box;
-      overflow-y: auto;
-      scroll-behavior: smooth;
-    }
-
-    /* 滚动条 */
-    :host::-webkit-scrollbar {
-      width: 8px;
-    }
-    :host::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    :host::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 4px;
-    }
-    :host::-webkit-scrollbar-thumb:hover {
-      background: rgba(255, 255, 255, 0.4);
-    }
-
-    h2 {
-      font-size: 16px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding-bottom: 12px;
-      margin-top: 0;
-      font-weight: 500;
-    }
-    .section {
-      margin-bottom: 32px;
-    }
-    .color-grid {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 16px;
-    }
-    .color-btn {
-      width: 48px;
-      height: 48px;
-      border-radius: 8px;
-      cursor: pointer;
-      border: 2px solid transparent;
-      transition:
-        transform 0.2s,
-        border-color 0.2s;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    }
-    .color-btn:hover {
-      transform: scale(1.05);
-    }
-    .color-btn.active {
-      border-color: white;
-      transform: scale(1.05);
-    }
-    .custom-color {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-top: 20px;
-      padding: 12px;
-      background: rgba(0, 0, 0, 0.2);
-      border-radius: 8px;
-      width: fit-content;
-    }
-    input[type='color'] {
-      -webkit-appearance: none;
-      border: none;
-      width: 32px;
-      height: 32px;
-      border-radius: 4px;
-      cursor: pointer;
-      padding: 0;
-      background: transparent;
-    }
-    input[type='color']::-webkit-color-swatch-wrapper {
-      padding: 0;
-    }
-    input[type='color']::-webkit-color-swatch {
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 4px;
-    }
-
-    .url-input-container {
-      margin-top: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .url-input-container input[type='text'] {
-      width: 100%;
-      max-width: 400px;
-      padding: 10px 14px;
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 6px;
-      color: white;
-      font-size: 14px;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    .url-input-container input[type='text']:focus {
-      border-color: var(--fuyeor-purple, #9370db);
-    }
-  `;
+  static styles = styles;
 
   #presets = [
-    'radial-gradient(circle at center, #1a1a2e 0%, #000 100%)',
-    '#1e1e2e',
-    '#2c3e50',
+    'linear-gradient(315deg, rgb(133, 108, 255) 0%, rgb(133, 108, 255) 10%, rgb(133, 104, 255) calc(10% + 1px), rgb(133, 104, 255) 20%, rgb(132, 110, 255) calc(20% + 1px), rgb(132, 110, 255) 30%, rgb(132, 122, 255) calc(30% + 1px), rgb(132, 122, 255) 40%, rgb(132, 135, 255) calc(40% + 1px), rgb(132, 135, 255) 50%, rgb(131, 143, 255) calc(50% + 1px), rgb(131, 143, 255) 60%, rgb(131, 144, 255) calc(60% + 1px), rgb(131, 144, 255) 70%, rgb(131, 135, 255) calc(70% + 1px), rgb(131, 135, 255) 80%, rgb(130, 122, 255) calc(80% + 1px), rgb(130, 122, 255) 90%, rgb(130, 110, 255) calc(90% + 1px), rgb(130, 110, 255) 100%)',
     '#16a085',
-    '#8e44ad',
-    '#2980b9',
+    '#aea4e4',
+    '#73a3d3',
   ];
 
   #setColor(color: string) {

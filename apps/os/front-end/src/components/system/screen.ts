@@ -3,8 +3,6 @@ import { LitElement, html, css } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { SignalWatcher } from '@lit-labs/signals';
 import { WindowManagerAPI } from '@/shared/signals/wm';
-import { desktopBackground } from '@/shared/signals/settings';
-import { isImageUrl } from '@/shared/utils/is-image';
 
 import '@/components/window/window-manager';
 
@@ -65,13 +63,6 @@ export class SystemScreen extends SignalWatcher(LitElement) {
   }
 
   render() {
-    const bgValue = desktopBackground.get();
-
-    // 动态应用正确的 CSS background 缩写属性
-    this.style.background = isImageUrl(bgValue)
-      ? `url('${bgValue}') center / cover no-repeat`
-      : bgValue;
-
     return html`
       <div class="desktop-content">
         <div class="desktop-icon" @dblclick=${this.#openSettings}>

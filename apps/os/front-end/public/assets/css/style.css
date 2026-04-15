@@ -6,6 +6,12 @@
   --status-bar-height: 30px;
   --task-bar-height: 50px;
   --glass-blur: blur(20px);
+
+  --surface-raised-transparent: color-mix(in srgb, var(--surface-raised), transparent 60%)
+}
+
+html {
+  scrollbar-gutter: unset;
 }
 
 body {

@@ -1,6 +1,9 @@
 // @/App.ts
 import { LitElement, html, css } from 'lit';
 import { customElement } from 'lit/decorators.js';
+import { SignalWatcher } from '@lit-labs/signals';
+import { desktopBackground } from '@/shared/signals/settings';
+import { isImageUrl } from '@/shared/utils/is-image';
 
 import '@fuyeor/locale';
 import './components/system/status-bar';
@@ -11,7 +14,7 @@ import './components/system/start-menu';
 import '@/components/system/toast-provider';
 
 @customElement('system-view')
-export class SystemView extends LitElement {
+export class SystemView extends SignalWatcher(LitElement) {
   static styles = css`
     :host {
       display: flex;
@@ -34,6 +37,13 @@ export class SystemView extends LitElement {
   }
 
   render() {
+    const bgValue = desktopBackground.get();
+
+    // apply the correct CSS background
+    this.style.background = isImageUrl(bgValue)
+      ? `url('${bgValue}') center / cover no-repeat`
+      : bgValue;
+
     return html`
       <!-- 顶部状态栏 -->
       <system-status-bar></system-status-bar>

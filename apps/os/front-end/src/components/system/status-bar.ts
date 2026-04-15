@@ -26,7 +26,6 @@ export class SystemStatusBar extends SignalWatcher(LitElement) {
       font-size: 0.75rem;
       color: rgb(255, 255, 255);
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      box-sizing: border-box;
     }
 
     .brand {
