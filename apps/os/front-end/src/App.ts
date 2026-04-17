@@ -3,6 +3,7 @@ import { LitElement, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { SignalWatcher } from '@lit-labs/signals';
 import { fetchAuthStatus } from '@/api/auth';
+import { fontLoader } from '@/shared/services/font-loader';
 import { systemState } from '@/shared/signals/auth';
 
 import '@/components/system/setup-view';
@@ -13,6 +14,9 @@ import '@/components/system/system-view';
 export class OsRoot extends SignalWatcher(LitElement) {
   async connectedCallback() {
     super.connectedCallback();
+
+    fontLoader.init();
+
     // initialize OS
     try {
       await fetchAuthStatus();
