@@ -1,5 +1,6 @@
 // vite.config.js
 import { defineConfig, loadEnv } from 'vite';
+import { hmrPlugin, presets } from 'vite-plugin-web-components-hmr';
 import { createViteConfig } from '@fuyeor/config/vite.config.js';
 
 /**
@@ -12,7 +13,13 @@ export default defineConfig(({ mode }) => {
 
   return createViteConfig(
     {
-      plugins: [],
+      plugins: [
+        hmrPlugin({
+          include: ['./src/**/*.ts'],
+          // Using the Lit preset for better HMR support with Lit components
+          presets: [presets.lit],
+        }),
+      ],
       server: {
         host: '0.0.0.0',
         port: 5590,

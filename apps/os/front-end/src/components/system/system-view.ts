@@ -2,7 +2,7 @@
 import { LitElement, html, css } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { SignalWatcher } from '@lit-labs/signals';
-import { desktopBackground } from '@/shared/signals/settings';
+import { appearanceSignal } from '@/shared/signals/settings';
 import { isImageUrl } from '@/shared/utils/is-image';
 
 import '@fuyeor/locale';
@@ -32,7 +32,7 @@ export class SystemView extends SignalWatcher(LitElement) {
   `;
 
   render() {
-    const bgValue = desktopBackground.get();
+    const bgValue = appearanceSignal.get().screenWallpaper;
 
     // apply the correct CSS background
     this.style.background = isImageUrl(bgValue)

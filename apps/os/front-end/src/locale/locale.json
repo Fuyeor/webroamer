@@ -1,15 +1,15 @@
 {
-  "settings": {
-    "ar": "الإعدادات",
-    "de": "Einstellungen",
-    "en": "Settings",
-    "es": "Configuración",
-    "fr": "Paramètres",
-    "ja": "設定",
-    "ko": "설정",
-    "pt": "Configurações",
-    "ru": "Настройки",
-    "zh-hans": "设置"
+  "account.settings": {
+    "ar": "إعدادات الحساب",
+    "de": "Kontoeinstellungen",
+    "en": "Account Settings",
+    "es": "Configuración de cuenta",
+    "fr": "Paramètres du compte",
+    "ja": "アカウント設定",
+    "ko": "계정 설정",
+    "pt": "Configurações da conta",
+    "ru": "Настройки аккаунта",
+    "zh-hans": "账号设置"
   },
   "settings.fontsize.large": {
     "ar": "كبير",
@@ -107,18 +107,6 @@
     "ru": "Тёмная",
     "zh-hans": "暗色模式"
   },
-  "system.setup.initializing": {
-    "ar": "جاري تهيئة النظام...",
-    "de": "System wird initialisiert...",
-    "en": "System initializing...",
-    "es": "Inicializando el sistema...",
-    "fr": "Initialisation du système...",
-    "ja": "システムを初期化中...",
-    "ko": "시스템 초기화 중...",
-    "pt": "Inicializando o sistema...",
-    "ru": "Инициализация системы...",
-    "zh-hans": "系统初始化中..."
-  },
   "settings.theme.fontsize": {
     "ar": "حجم الخط",
     "de": "Schriftgröße",
@@ -154,6 +142,30 @@
     "pt": "Aparência",
     "ru": "Внешний вид",
     "zh-hans": "主题模式"
+  },
+  "settings.wallpaper.blur": {
+    "ar": "تفعيل تأثير الزجاج المصنفر",
+    "de": "Desktop-Blur aktivieren",
+    "en": "Enable Desktop Blur",
+    "es": "Activar desenfoque de escritorio",
+    "fr": "Activer le flou du bureau",
+    "ja": "デスクトップのぼかしを有効にする",
+    "ko": "데스크톱 블러 활성화",
+    "pt": "Ativar desfoque da área de trabalho",
+    "ru": "Включить размытие рабочего стола",
+    "zh-hans": "启用桌面毛玻璃"
+  },
+  "settings.wallpaper.blur.px": {
+    "ar": "شدة التمويه: {count} بكسل",
+    "de": "Unschärfestärke: {count}px",
+    "en": "Blur Intensity: {count}px",
+    "es": "Intensidad de desenfoque: {count}px",
+    "fr": "Intensité du flou : {count}px",
+    "ja": "ぼかし強度: {count}px",
+    "ko": "블러 강도: {count}px",
+    "pt": "Intensidade do desfoque: {count}px",
+    "ru": "Интенсивность размытия: {count}px",
+    "zh-hans": "模糊强度：{count}px"
   },
   "settings.wallpaper.lock": {
     "ar": "خلفية شاشة القفل",
@@ -346,6 +358,30 @@
     "pt": "Proteção por senha não definida",
     "ru": "Защита паролем не установлена",
     "zh-hans": "未设置密码保护"
+  },
+  "system.settings": {
+    "ar": "إعدادات النظام",
+    "de": "Systemeinstellungen",
+    "en": "System Settings",
+    "es": "Configuración del sistema",
+    "fr": "Paramètres système",
+    "ja": "システム設定",
+    "ko": "시스템 설정",
+    "pt": "Configurações do sistema",
+    "ru": "Системные настройки",
+    "zh-hans": "系统设置"
+  },
+  "system.setup.initializing": {
+    "ar": "جاري تهيئة النظام...",
+    "de": "System wird initialisiert...",
+    "en": "System initializing...",
+    "es": "Inicializando el sistema...",
+    "fr": "Initialisation du système...",
+    "ja": "システムを初期化中...",
+    "ko": "시스템 초기화 중...",
+    "pt": "Inicializando o sistema...",
+    "ru": "Инициализация системы...",
+    "zh-hans": "系统初始化中..."
   },
   "system.setup.start": {
     "ar": "لنبدأ!",

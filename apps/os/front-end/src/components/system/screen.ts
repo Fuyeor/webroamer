@@ -1,77 +1,45 @@
 // @/components/system/screen.ts
-import { LitElement, html, css } from 'lit';
+import { LitElement, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { SignalWatcher } from '@lit-labs/signals';
+import { Locale } from '@fuyeor/locale';
 import { WindowManagerAPI } from '@/shared/signals/wm';
+import { appearanceSignal } from '@/shared/signals/settings';
+import { styles } from './screen.styles';
 
 import '@/components/window/window-manager';
 
 @customElement('system-screen')
 export class SystemScreen extends SignalWatcher(LitElement) {
-  static styles = css`
-    :host {
-      flex: 1;
-      position: relative; /* 核心：开启局部坐标系 */
-      overflow: hidden;
-      display: block;
-    }
-    .desktop-content {
-      position: absolute; /* 已经有了，很好 */
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      /* 确保这里能包住所有的 slot 内容 */
-    }
-    .desktop-icon {
-      width: 72px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      padding: 8px;
-      border-radius: 6px;
-      cursor: pointer;
-      user-select: none;
-      transition:
-        background 0.2s,
-        border 0.2s;
-      border: 1px solid transparent;
-    }
-    .desktop-icon:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    .desktop-icon img {
-      width: 40px;
-      height: 40px;
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
-    }
-    .desktop-icon span {
-      color: white;
-      font-size: 12px;
-      text-align: center;
-      text-shadow:
-        0 1px 2px black,
-        0 1px 4px black;
-    }
-  `;
+  static styles = styles;
 
   #openSettings() {
-    WindowManagerAPI.openApp('settings', 'System Settings', 'system-options');
+    WindowManagerAPI.openApp('settings', Locale.t('system.settings'), 'system-options');
   }
 
   render() {
+    const { screenBlur } = appearanceSignal.get();
+
+    const glassStyle = screenBlur !== null ? `backdrop-filter: blur(${screenBlur}px); ` : '';
+
     return html`
+      <!-- frosted glass layer -->
+      <div class="glass-layer" style=${glassStyle}></div>
+
       <div class="desktop-content">
         <div class="desktop-icon" @dblclick=${this.#openSettings}>
-          <img src="/favicon.svg" alt="Settings" />
-          <span><locale-template keypath="settings"></locale-template></span>
+          <div class="icon-wrapper">
+            <img src="/favicon.svg" alt="Settings" />
+          </div>
+          <span class="icon-label">
+            <locale-template keypath="system.settings"></locale-template>
+          </span>
         </div>
-        <window-manager></window-manager>
+
         <slot></slot>
       </div>
+
+      <window-manager></window-manager>
     `;
   }
 }

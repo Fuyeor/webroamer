@@ -2,7 +2,8 @@
 import { LitElement, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { SignalWatcher } from '@lit-labs/signals';
-import { desktopBackground } from '@/shared/signals/settings';
+import { Locale } from '@fuyeor/locale';
+import { AppearanceAPI, appearanceSignal } from '@/shared/signals/settings';
 import { ToastAPI } from '@/shared/signals/toast';
 import { isImageUrl } from '@/shared/utils/is-image';
 import { styles } from './system-options.styles';
@@ -22,12 +23,10 @@ export class SystemOptions extends SignalWatcher(LitElement) {
     '#73a3d3',
   ];
 
-  #setColor(color: string) {
-    desktopBackground.set(color);
-  }
-
   #onCustomColorChange(e: Event) {
-    desktopBackground.set((e.target as HTMLInputElement).value);
+    AppearanceAPI.update({
+      screenWallpaper: (e.target as HTMLInputElement).value,
+    });
   }
 
   // 处理图片 URL 改变
@@ -38,7 +37,7 @@ export class SystemOptions extends SignalWatcher(LitElement) {
     const img = new Image();
     img.onload = () => {
       // 成功加载，才更新壁纸
-      desktopBackground.set(url);
+      AppearanceAPI.update({ screenWallpaper: url });
     };
     img.onerror = () => {
       // 加载失败，弹出 Toast 错误！
@@ -51,8 +50,11 @@ export class SystemOptions extends SignalWatcher(LitElement) {
   }
 
   render() {
-    const currentBg = desktopBackground.get();
+    const { screenBlur } = appearanceSignal.get();
+
+    const currentBg = appearanceSignal.get().screenWallpaper;
     const isImage = isImageUrl(currentBg);
+    const isBlurEnabled = screenBlur !== null;
 
     return html`
       <!-- 外观与字体设置区 -->
@@ -75,7 +77,7 @@ export class SystemOptions extends SignalWatcher(LitElement) {
               <div
                 class="color-btn ${currentBg === color ? 'active' : ''}"
                 style="background: ${color}"
-                @click=${() => desktopBackground.set(color)}
+                @click=${() => AppearanceAPI.update({ screenWallpaper: color })}
               ></div>
             `,
           )}
@@ -98,6 +100,36 @@ export class SystemOptions extends SignalWatcher(LitElement) {
             @change=${this.#onUrlChange}
           />
         </div>
+      </div>
+
+      <div class="section">
+        <div class="setting-row">
+          <span><locale-template keypath="settings.wallpaper.blur"></locale-template></span>
+          <input
+            type="checkbox"
+            .checked=${isBlurEnabled}
+            @change=${(e: any) => {
+              // 勾选启用默认给 12px，取消勾选直接置 null
+              AppearanceAPI.update({ screenBlur: e.target.checked ? 12 : null });
+            }}
+          />
+        </div>
+
+        ${isBlurEnabled
+          ? html`
+              <div class="setting-row" style="margin-top: 16px;">
+                <span>${Locale.t('settings.wallpaper.blur.px', { count: screenBlur })}</span>
+                <input
+                  type="range"
+                  min="0"
+                  max="24"
+                  .value=${screenBlur}
+                  @input=${(e: any) =>
+                    AppearanceAPI.update({ screenBlur: parseInt(e.target.value) })}
+                />
+              </div>
+            `
+          : ''}
       </div>
     `;
   }
