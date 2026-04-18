@@ -42,7 +42,6 @@ pub struct SystemInfo {
         (status = 200, description = "Get device or system info", body = SystemInfo)
     )
 )]
-
 pub async fn get_system_info() -> impl IntoResponse {
     use sysinfo::{CpuRefreshKind, Disks, MemoryRefreshKind, RefreshKind};
 
@@ -52,7 +51,7 @@ pub async fn get_system_info() -> impl IntoResponse {
             .with_cpu(CpuRefreshKind::nothing()),
     );
 
-    // 刷新 CPU 品牌信息需要这一步
+    // refresh CPU brand info needs it
     sys.refresh_cpu_usage();
 
     // get cpu model: take the brand name of the first CPU

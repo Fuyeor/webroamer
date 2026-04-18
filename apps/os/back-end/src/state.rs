@@ -1,6 +1,8 @@
 // src/state.rs
+use crate::api::task::types::TaskManagerData;
 use sqlx::SqlitePool;
 use std::sync::{Arc, atomic::AtomicBool};
+use tokio::sync::broadcast;
 
 /// The system's global state
 /// which will be injected into all Axum routes.
@@ -10,6 +12,8 @@ pub struct AppState {
     /// A memory-level flag indicating whether the system has been initialized
     /// i.e., whether at least one user exists.
     pub has_user: Arc<AtomicBool>,
+    // Save the task monitor's receive channel
+    pub task_sender: broadcast::Sender<TaskManagerData>,
 }
 
 impl AppState {
@@ -20,9 +24,13 @@ impl AppState {
             .fetch_one(&db)
             .await?;
 
+        // Start the background monitoring engine
+        let task_tx = crate::api::task::engine::spawn_task_monitor();
+
         Ok(Self {
             db,
             has_user: Arc::new(AtomicBool::new(row.0 > 0)),
+            task_sender: task_tx,
         })
     }
 }
