@@ -11,6 +11,7 @@ import { styles } from './start-menu.styles';
 
 import '@/apps/options/system-options';
 import '@/apps/about/about-pc';
+import '@/apps/task-manager/task-manager';
 
 @customElement('system-start-menu')
 export class SystemStartMenu extends SignalWatcher(LitElement) {
@@ -24,6 +25,11 @@ export class SystemStartMenu extends SignalWatcher(LitElement) {
   #openAbout() {
     toggleStartMenu();
     WindowManagerAPI.openApp('about-pc', 'About This PC', 'app-about');
+  }
+
+  #openTaskManager() {
+    toggleStartMenu();
+    WindowManagerAPI.openApp('task-manager', 'Task Manager', 'app-task-manager');
   }
 
   // use a MutationController to handle sign out
@@ -65,6 +71,11 @@ export class SystemStartMenu extends SignalWatcher(LitElement) {
           <locale-template keypath="settings"></locale-template>
         </div>
         <div class="menu-item" @click=${this.#openAbout}>
+          <span>ℹ️</span>
+          <locale-template keypath="menu.about"></locale-template>
+        </div>
+
+        <div class="menu-item" @click=${this.#openTaskManager}>
           <span>ℹ️</span>
           <locale-template keypath="menu.about"></locale-template>
         </div>
